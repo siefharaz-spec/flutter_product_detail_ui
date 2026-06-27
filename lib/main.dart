@@ -1,252 +1,206 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const BMICalculatorApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class BMICalculatorApp extends StatelessWidget {
+  const BMICalculatorApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Product Detail UI',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        scaffoldBackgroundColor: const Color(0xFFF2F3F2), // لون الخلفية الرمادي الفاتح
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: const Color(0xFF0A0E21),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF0A0E21),
+          elevation: 0,
+          centerTitle: true,
+        ),
       ),
-      home: const ProductDetailPage(),
+      home: const BMICalculatorPage(),
     );
   }
 }
 
-class ProductDetailPage extends StatelessWidget {
-  const ProductDetailPage({super.key});
+class BMICalculatorPage extends StatelessWidget {
+  const BMICalculatorPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () {},
+        title: const Text(
+          'BMI CALCULATOR',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 1.2),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.ios_share, color: Colors.black),
-            onPressed: () {},
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1D1E33),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.male, size: 80, color: Colors.white),
+                          SizedBox(height: 15),
+                          Text('MALE', style: TextStyle(fontSize: 18, color: Color(0xFF8D8E98))),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 15),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1D1E33),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.female, size: 80, color: Colors.white),
+                          SizedBox(height: 15),
+                          Text('FEMALE', style: TextStyle(fontSize: 18, color: Color(0xFF8D8E98))),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 15),
+              decoration: BoxDecoration(
+                color: const Color(0xFF1D1E33),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('HEIGHT', style: TextStyle(fontSize: 18, color: Color(0xFF8D8E98))),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: const [
+                      Text('180', style: TextStyle(fontSize: 50, fontWeight: FontWeight.w900, color: Colors.white)),
+                      Text('cm', style: TextStyle(fontSize: 18, color: Color(0xFF8D8E98))),
+                    ],
+                  ),
+                  Slider(
+                    value: 180,
+                    min: 120,
+                    max: 220,
+                    activeColor: const Color(0xFFEB1555),
+                    inactiveColor: const Color(0xFF8D8E98),
+                    onChanged: (double newValue) {},
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1D1E33),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('WEIGHT', style: TextStyle(fontSize: 18, color: Color(0xFF8D8E98))),
+                          const Text('60', style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900, color: Colors.white)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FloatingActionButton.small(
+                                backgroundColor: const Color(0xFF4C4F5E),
+                                child: const Icon(Icons.remove, color: Colors.white),
+                                onPressed: () {},
+                              ),
+                              const SizedBox(width: 10),
+                              FloatingActionButton.small(
+                                backgroundColor: const Color(0xFF4C4F5E),
+                                child: const Icon(Icons.add, color: Colors.white),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 15),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1D1E33),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('AGE', style: TextStyle(fontSize: 18, color: Color(0xFF8D8E98))),
+                          const Text('28', style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900, color: Colors.white)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FloatingActionButton.small(
+                                backgroundColor: const Color(0xFF4C4F5E),
+                                child: const Icon(Icons.remove, color: Colors.white),
+                                onPressed: () {},
+                              ),
+                              const SizedBox(width: 10),
+                              FloatingActionButton.small(
+                                backgroundColor: const Color(0xFF4C4F5E),
+                                child: const Icon(Icons.add, color: Colors.white),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+              color: const Color(0xFFEB1555),
+              margin: const EdgeInsets.only(top: 10),
+              width: double.infinity,
+              height: 70,
+              child: const Center(
+                child: Text(
+                  'CALCULATE',
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: 1.0),
+                ),
+              ),
+            ),
           ),
         ],
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // 1. صورة المنتج (تم تعديلها لتقرأ من مجلد assets)
-              Center(
-                child: Container(
-                  height: 250,
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                  child: Image.asset(
-                    'assets/apple.png', // مسار الصورة الداخلي
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
-
-              // 2. اسم المنتج وأيقونة المفضلة
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Naturel Red Apple',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 5),
-                      Text(
-                        '1kg, Price',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Icon(
-                    Icons.favorite_border,
-                    color: Colors.grey,
-                    size: 28,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 30),
-
-              // 3. أزرار الكمية والسعر
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      const Icon(Icons.remove, color: Colors.grey),
-                      const SizedBox(width: 15),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 12),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade300),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: const Text(
-                          '1',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 15),
-                      const Icon(Icons.add, color: Color(0xFF53B175)), // اللون الأخضر
-                    ],
-                  ),
-                  const Text(
-                    '\$4.99',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 30),
-              const Divider(color: Colors.grey, thickness: 0.3),
-
-              // 4. تفاصيل المنتج (Product Detail)
-              Theme(
-                data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                child: const ExpansionTile(
-                  tilePadding: EdgeInsets.zero,
-                  title: Text(
-                    'Product Detail',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                  children: [
-                    Text(
-                      'Apples Are Nutritious. Apples May Be Good For Weight Loss. Apples May Be Good For Your Heart. As Part Of A Healthful And Varied Diet.',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        height: 1.5,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Divider(color: Colors.grey, thickness: 0.3),
-
-              // 5. قسم التغذية (Nutritions)
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: const Text(
-                  'Nutritions',
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: const Text(
-                        '100gr',
-                        style: TextStyle(fontSize: 10, color: Colors.grey),
-                      ),
-                    ),
-                    const SizedBox(width: 15),
-                    const Icon(Icons.arrow_forward_ios, size: 16),
-                  ],
-                ),
-              ),
-              const Divider(color: Colors.grey, thickness: 0.3),
-
-              // 6. التقييمات (Review)
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: const Text(
-                  'Review',
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      children: List.generate(
-                        5,
-                        (index) => const Icon(Icons.star,
-                            color: Colors.deepOrange, size: 18),
-                      ),
-                    ),
-                    const SizedBox(width: 15),
-                    const Icon(Icons.arrow_forward_ios, size: 16),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              // 7. زر الإضافة للسلة
-              SizedBox(
-                width: double.infinity,
-                height: 65,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF53B175), // اللون الأخضر المطابق للتصميم
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: const Text(
-                    'Add To Basket',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
-            ],
-          ),
-        ),
       ),
     );
   }
